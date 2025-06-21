@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="loadStudent()">
+  <h2 id="welcomeMsg">Welcome, Student!</h2>
+  <nav>
+    <a href="student-internships.html">Browse Internships</a> |
+    <a href="student-profile.html">Profile</a> |
+    <a href="#" onclick="logout()">Logout</a>
+  </nav>
+
+  <script>
+    function loadStudent() {
+      const studentName = localStorage.getItem('studentName');
+      if (!studentName) {
+        window.location.href = 'student-login.html';
+      } else {
+        document.getElementById('welcomeMsg').textContent = 'Welcome, ' + studentName + '!';
+      }
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'student-login.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="loadProfile()">
+  <h2>Student Profile</h2>
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+  <button onclick="updateProfile()">Update Profile</button>
+
+  <script>
+    async function loadProfile() {
+      const studentId = localStorage.getItem('studentId');
+      if (!studentId) return window.location.href = 'student-login.html';
+
+      const res = await fetch(`/student/profile/${studentId}`);
+      const student = await res.json();
+      document.getElementById('name').value = student.name;
+      document.getElementById('email').value = student.email;
+    }
+
+    async function updateProfile() {
+      const studentId = localStorage.getItem('studentId');
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      const res = await fetch(`/student/profile/${studentId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email })
+      });
+
+      if (res.ok) {
+        alert('Profile updated successfully');
+        localStorage.setItem('studentName', name);
+      } else {
+        alert('Failed to update profile');
+      }
+    }
+  </script>
+</body>
+</html>

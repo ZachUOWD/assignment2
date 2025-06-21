@@ -1,0 +1,2 @@
+CREATE DATABASE internship_management;
+USE internship_management;

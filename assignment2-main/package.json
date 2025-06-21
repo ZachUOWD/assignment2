@@ -1,0 +1,15 @@
+{
+    "name": "internship-management",
+    "version": "1.0.0",
+    "description": "Internship management system",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.18.0",
+      "mysql2": "^3.6.0",
+      "bcrypt": "^5.1.0",
+      "express-session": "^1.17.0"
+    }
+  }
